@@ -1,0 +1,42 @@
+---
+title: "USA Wyoming Cities"
+author: "Mohsen Soltanifar"
+date: "August 5, 2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## August 5, 2020
+
+### Cities in Wyoming State, USA with minimum 5,000 citizens (2010 US Census)
+
+```{r, echo=FALSE}
+library(leaflet)
+library(dplyr)
+library(htmlwidgets)
+library(htmltools)
+
+City<-c("Casper","Cheyenne","Cody","Douglas","Evanston","Gillette","Green-River","Jackson","Lander","Laramie", "Powell","Rawlins", "Riverton","Rock-Springs","Sheridan","Torrington","Worland")
+
+Population<-c(55316,59466,9520,6120,12359,29087,12515,9577,7487,30816,6314,9259,10615,23036,17444,6501,5487)
+
+lat=c(42.85,41.14,44.523333,42.756111,41.263333,44.282778,41.528611,43.475278,42.883056,41.311111,44.758889,41.790278,43.025,41.590833,44.796667,42.06667,44.016667)
+
+lng<- -c(106.325,104.820278,109.057222,105.384444,110.964722,105.505278,109.466111,110.769167,108.7325,105.593611,108.758333,107.234167,108.38,109.2225,106.958889,104.1825,107.958333)
+
+mydata <- data.frame(City,Population,lat,lng)
+
+mydata %>% 
+  leaflet() %>%
+  addTiles( ) %>%
+  addCircles(weight = 1, radius = mydata$Population,
+             label =  mydata$Population)
+
+
+  
+  
+  
+```
